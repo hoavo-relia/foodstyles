@@ -128,10 +128,14 @@ const CardActionModal: React.FC<{
           variables: {id},
 
           onCompleted: async ({shareCard}) => {
-            await Share.open({
-              message: name,
-              url: `https://cards.foodstyles.com/${shareCard}`,
-            });
+            try {
+              await Share.open({
+                message: name,
+                url: `https://cards.foodstyles.com/${shareCard}`,
+              });
+            } catch (error) {
+              console.info('error', error);
+            }
           },
         });
 
